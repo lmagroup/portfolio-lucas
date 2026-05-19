@@ -1,0 +1,136 @@
+/* Fonts — subset latin uniquement pour la performance */
+@import '@fontsource/inter/latin-400.css';
+@import '@fontsource/inter/latin-500.css';
+@import '@fontsource/inter/latin-600.css';
+@import '@fontsource/inter/latin-700.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
+@import '@fontsource/jetbrains-mono/latin-500.css';
+
+/* Tailwind layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   BASE LAYER — resets & fondations
+   ============================================ */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply font-sans text-base text-neutral-900 bg-neutral-0 antialiased;
+    font-feature-settings:
+      'kern' 1,
+      'liga' 1;
+  }
+
+  /* Typographie de base */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans font-semibold leading-tight;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  /* Focus visible — jamais outline: none sans alternative */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2;
+  }
+
+  /* Images fluides */
+  img,
+  video {
+    @apply max-w-full;
+  }
+
+  /* Liens de base */
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  /* Listes reset */
+  ul,
+  ol {
+    @apply list-none p-0 m-0;
+  }
+
+  /* Code */
+  code,
+  kbd,
+  pre {
+    @apply font-mono;
+  }
+}
+
+/* ============================================
+   COMPONENTS LAYER — utilitaires réutilisables
+   ============================================ */
+@layer components {
+  /* Container centré avec padding fluide */
+  .container-main {
+    @apply w-full max-w-container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Skip link accessibilité */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50;
+    @apply bg-brand-500 text-neutral-0 px-4 py-2 rounded-md font-semibold text-sm;
+    @apply focus:outline-none focus:ring-2 focus:ring-brand-700 focus:ring-offset-2;
+  }
+
+  /* Screen reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}

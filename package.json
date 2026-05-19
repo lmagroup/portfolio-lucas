@@ -14,19 +14,24 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.5.0",
     "eslint": "^8.57.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.20",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "prettier": "^3.5.3",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
+    "postcss": "^8.5.14",
+    "prettier": "^3.5.3",
+    "tailwindcss": "^3.4.19",
     "vite": "^5.4.19"
   },
   "engines": {
