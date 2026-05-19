@@ -1,10 +1,12 @@
 import Hero from '../sections/Hero'
+import About from '../sections/About'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      {/* Les sections suivantes seront ajoutées aux étapes 7 à 11 */}
+      <About />
+      {/* Les sections suivantes seront ajoutées aux étapes 8 à 11 */}
     </>
   )
 }
