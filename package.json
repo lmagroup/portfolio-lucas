@@ -10,7 +10,8 @@
     "lint:fix": "eslint . --ext js,jsx --fix",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,css}\""
+    "format:check": "prettier --check \"src/**/*.{js,jsx,css}\"",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "^18.3.1",
