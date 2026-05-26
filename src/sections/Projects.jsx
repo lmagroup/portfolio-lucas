@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowRight, ExternalLink } from 'lucide-react'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { projects } from '../data/projects'
@@ -23,7 +23,7 @@ function ProjectCard({ project, index }) {
   const isEven = index % 2 === 0
 
   return (
-    <motion.article
+    <m.article
       variants={revealVariants}
       initial={prefersReduced ? 'visible' : 'hidden'}
       whileInView="visible"
@@ -35,39 +35,22 @@ function ProjectCard({ project, index }) {
         !isEven && 'lg:direction-rtl'
       )}
     >
-      {/* Visuel placeholder */}
+      {/* Visuel projet */}
       <div
         className={cn(
-          'relative rounded-2xl overflow-hidden aspect-[16/10] shadow-pop',
+          'relative rounded-2xl overflow-hidden aspect-[16/10] shadow-pop bg-neutral-100',
           !isEven && 'lg:order-2'
         )}
       >
-        <div
-          className="absolute inset-0 flex items-center justify-center"
-          style={{ backgroundColor: `${project.color}12` }}
-          aria-hidden="true"
-        >
-          {/* Mockup simplifié */}
-          <div className="w-4/5 bg-neutral-0 rounded-xl shadow-card p-4">
-            <div className="flex gap-1.5 mb-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-              <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-              <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
-            </div>
-            <div className="space-y-2">
-              <div
-                className="h-3 rounded"
-                style={{ backgroundColor: `${project.color}30`, width: '75%' }}
-              />
-              <div className="h-3 rounded bg-neutral-100 w-full" />
-              <div className="h-3 rounded bg-neutral-100 w-5/6" />
-              <div
-                className="h-3 rounded"
-                style={{ backgroundColor: `${project.color}20`, width: '60%' }}
-              />
-            </div>
-          </div>
-        </div>
+        <img
+          src={project.image}
+          alt={project.imageAlt}
+          width={800}
+          height={500}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+        />
 
         {/* Badge année */}
         <span className="absolute top-3 left-3 text-xs font-mono font-medium px-2 py-1 rounded-md bg-neutral-900/70 text-neutral-100 backdrop-blur-sm">
@@ -154,7 +137,7 @@ function ProjectCard({ project, index }) {
           )}
         </div>
       </div>
-    </motion.article>
+    </m.article>
   )
 }
 
@@ -166,6 +149,8 @@ ProjectCard.propTypes = {
     tagline: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     stack: PropTypes.arrayOf(PropTypes.string).isRequired,
+    image: PropTypes.string.isRequired,
+    imageAlt: PropTypes.string.isRequired,
     links: PropTypes.shape({
       github: PropTypes.string,
       demo: PropTypes.string,

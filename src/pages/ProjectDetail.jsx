@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowLeft, ArrowRight, ExternalLink, CheckCircle2 } from 'lucide-react'
 import { getProjectBySlug, getAdjacentProjects } from '../data/projects'
 import { useReducedMotion } from '../hooks/useReducedMotion'
+import Seo from '../components/seo/Seo'
 import Tag from '../components/ui/Tag'
 import { GithubIcon } from '../components/ui/icons'
 import { cn } from '../utils/cn'
@@ -44,8 +45,31 @@ export default function ProjectDetail() {
 
   if (!project) return null
 
+  const projectJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: project.title,
+    description: project.description,
+    applicationCategory: 'WebApplication',
+    dateCreated: project.year,
+    creator: {
+      '@type': 'Person',
+      name: 'Lucas Marie-Anne',
+      url: 'https://www.lucasmarieanne.dev',
+    },
+    ...(project.links.demo && { url: project.links.demo }),
+    ...(project.links.github && { codeRepository: project.links.github }),
+  }
+
   return (
     <article aria-labelledby="project-detail-title">
+      <Seo
+        title={project.title}
+        description={`${project.tagline} — ${project.description.slice(0, 120)}`}
+        canonical={`/projets/${project.slug}`}
+        type="article"
+        jsonLd={projectJsonLd}
+      />
       {/* Hero projet */}
       <header
         className="relative py-16 lg:py-24 overflow-hidden"
@@ -71,7 +95,7 @@ export default function ProjectDetail() {
             Retour aux projets
           </Link>
 
-          <motion.div
+          <m.div
             initial={prefersReduced ? false : 'hidden'}
             animate="visible"
             variants={{
@@ -80,29 +104,29 @@ export default function ProjectDetail() {
             }}
           >
             {/* Stack */}
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mb-5">
+            <m.div variants={fadeUp} className="flex flex-wrap gap-2 mb-5">
               {project.stack.map((tech) => (
                 <Tag key={tech} className="text-xs">
                   {tech}
                 </Tag>
               ))}
-            </motion.div>
+            </m.div>
 
             {/* Titre */}
-            <motion.h1
+            <m.h1
               id="project-detail-title"
               variants={fadeUp}
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 mb-4 leading-tight"
             >
               {project.title}
-            </motion.h1>
+            </m.h1>
 
-            <motion.p variants={fadeUp} className="text-lg text-neutral-500 mb-8 max-w-2xl">
+            <m.p variants={fadeUp} className="text-lg text-neutral-500 mb-8 max-w-2xl">
               {project.tagline}
-            </motion.p>
+            </m.p>
 
             {/* Liens */}
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+            <m.div variants={fadeUp} className="flex flex-wrap gap-3">
               {project.links.github && (
                 <a
                   href={project.links.github}
@@ -136,38 +160,24 @@ export default function ProjectDetail() {
                   Voir la démo
                 </a>
               )}
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </header>
 
       {/* Contenu détail */}
       <div className="container-main py-14 max-w-4xl">
-        {/* Mockup visuel */}
-        <div
-          className="rounded-2xl overflow-hidden shadow-pop mb-14 aspect-[16/9] flex items-center justify-center"
-          style={{ backgroundColor: `${project.color}10` }}
-          aria-hidden="true"
-        >
-          <div className="w-3/4 bg-neutral-0 rounded-xl shadow-card p-6">
-            <div className="flex gap-2 mb-4">
-              <span className="w-3 h-3 rounded-full bg-red-400" />
-              <span className="w-3 h-3 rounded-full bg-yellow-400" />
-              <span className="w-3 h-3 rounded-full bg-green-400" />
-            </div>
-            <div className="space-y-2.5">
-              {[75, 100, 90, 60, 80].map((w, i) => (
-                <div
-                  key={i}
-                  className="h-3.5 rounded"
-                  style={{
-                    width: `${w}%`,
-                    backgroundColor: i % 2 === 0 ? `${project.color}25` : '#F4F4F5',
-                  }}
-                />
-              ))}
-            </div>
-          </div>
+        {/* Screenshot projet */}
+        <div className="rounded-2xl overflow-hidden shadow-pop mb-14 aspect-[16/9] bg-neutral-100">
+          <img
+            src={project.image}
+            alt={project.imageAlt}
+            width={1200}
+            height={675}
+            loading="eager"
+            decoding="async"
+            className="w-full h-full object-cover object-top"
+          />
         </div>
 
         {/* Problématique */}

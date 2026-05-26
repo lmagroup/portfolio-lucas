@@ -37,8 +37,8 @@ export const aboutActs = [
   {
     id: 'projection',
     eyebrow: 'Et demain ?',
-    title: 'Intégrer une équipe ambitieuse pour construire grand',
-    body: "Je cherche un environnement où la qualité du code, l'expérience utilisateur et la collaboration sont des valeurs partagées — startup, scale-up ou agence produit. À horizon 2–3 ans, je vise une expertise senior et, pourquoi pas, un rôle de tech lead front.",
-    icon: '🌱',
+    title: 'Construire des projets ambitieux en indépendant',
+    body: "Mon cap est entrepreneurial : concevoir et livrer des produits web à forte valeur pour des clients B2B et B2C, en gardant la maîtrise de chaque décision technique. Je reste ouvert à des collaborations ponctuelles quand le projet, les personnes et les ambitions s'alignent.",
+    icon: '🧭',
   },
 ]

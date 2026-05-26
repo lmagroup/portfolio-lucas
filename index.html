@@ -2,10 +2,27 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#2E9461" />
-    <title>Portfolio — Développeur Front-End</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Titre et description par défaut (Helmet override par page) -->
+    <title>Lucas Marie-Anne — Développeur Front-End React</title>
+    <meta name="description" content="Développeur Front-End React basé à Paris. Interfaces premium, performantes et accessibles WCAG AA." />
+
+    <!-- Préchargement de la police variable Inter — critique pour le FCP/LCP -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-variable.woff2"
+      crossorigin="anonymous"
+    />
+
+    <!-- Empêche le FOUC sur les navigateurs qui ne supportent pas JS modules -->
+    <noscript><style>body { visibility: visible !important; }</style></noscript>
   </head>
   <body>
     <div id="root"></div>

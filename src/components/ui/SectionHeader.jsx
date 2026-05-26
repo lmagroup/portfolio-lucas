@@ -8,6 +8,7 @@ export default function SectionHeader({
   align = 'left',
   className,
   titleAs: TitleTag = 'h2',
+  id,
 }) {
   return (
     <div
@@ -23,7 +24,7 @@ export default function SectionHeader({
           {eyebrow}
         </p>
       )}
-      <TitleTag className="text-3xl sm:text-4xl font-bold text-neutral-900 leading-tight">
+      <TitleTag id={id} className="text-3xl sm:text-4xl font-bold text-neutral-900 leading-tight">
         {title}
       </TitleTag>
       {lead && <p className="mt-4 text-lg text-neutral-500 max-w-2xl leading-relaxed">{lead}</p>}
@@ -38,4 +39,5 @@ SectionHeader.propTypes = {
   align: PropTypes.oneOf(['left', 'center', 'right']),
   className: PropTypes.string,
   titleAs: PropTypes.elementType,
+  id: PropTypes.string,
 }

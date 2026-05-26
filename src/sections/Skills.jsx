@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { skillCategories, softSkills } from '../data/skills'
 import SectionHeader from '../components/ui/SectionHeader'
@@ -67,7 +67,7 @@ function CategoryCard({ category, index }) {
   const prefersReduced = useReducedMotion()
 
   return (
-    <motion.article
+    <m.article
       variants={revealVariants}
       initial={prefersReduced ? 'visible' : 'hidden'}
       whileInView="visible"
@@ -93,7 +93,7 @@ function CategoryCard({ category, index }) {
           <SkillBadge key={skill.name} skill={skill} />
         ))}
       </ul>
-    </motion.article>
+    </m.article>
   )
 }
 
@@ -176,7 +176,7 @@ export default function Skills() {
         </div>
 
         {/* Soft skills */}
-        <motion.div
+        <m.div
           variants={revealVariants}
           initial={prefersReduced ? 'visible' : 'hidden'}
           whileInView="visible"
@@ -200,7 +200,7 @@ export default function Skills() {
               <SoftSkillItem key={item.label} item={item} />
             ))}
           </ul>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

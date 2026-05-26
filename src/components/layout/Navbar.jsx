@@ -1,29 +1,33 @@
 import { useState, useEffect, useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import PropTypes from 'prop-types'
 import { cn } from '../../utils/cn'
 import { useScrolled } from '../../hooks/useScrolled'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { useScrollSpy } from '../../hooks/useScrollSpy'
+
 const NAV_ITEMS = [
-  { label: 'Accueil', href: '/#accueil' },
-  { label: 'À propos', href: '/#a-propos' },
-  { label: 'Compétences', href: '/#competences' },
-  { label: 'Projets', href: '/#projets' },
-  { label: 'Parcours', href: '/#parcours' },
-  { label: 'Certifications', href: '/#certifications' },
+  { label: 'Accueil', href: '/#accueil', sectionId: 'accueil' },
+  { label: 'À propos', href: '/#a-propos', sectionId: 'a-propos' },
+  { label: 'Compétences', href: '/#competences', sectionId: 'competences' },
+  { label: 'Projets', href: '/#projets', sectionId: 'projets' },
+  { label: 'Parcours', href: '/#parcours', sectionId: 'parcours' },
+  { label: 'Certifications', href: '/#certifications', sectionId: 'certifications' },
 ]
 
-function NavItem({ href, label, onClick }) {
+const SECTION_IDS = NAV_ITEMS.map((item) => item.sectionId)
+
+function NavItem({ href, label, sectionId, activeSection, onClick }) {
   const { pathname } = useLocation()
-  const isActive = pathname === '/' && href.startsWith('/#')
+  const isActive = pathname === '/' && activeSection === sectionId
 
   return (
     <a
       href={href}
       onClick={onClick}
-      aria-current={isActive ? 'page' : undefined}
+      aria-current={isActive ? 'true' : undefined}
       className={cn(
         'text-sm font-medium transition-colors duration-150',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded-sm',
@@ -33,6 +37,14 @@ function NavItem({ href, label, onClick }) {
       {label}
     </a>
   )
+}
+
+NavItem.propTypes = {
+  href: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  sectionId: PropTypes.string.isRequired,
+  activeSection: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 NavItem.propTypes = {
@@ -59,6 +71,15 @@ export default function Navbar() {
   const prefersReduced = useReducedMotion()
   const { pathname } = useLocation()
   const menuButtonRef = useRef(null)
+  const drawerCloseRef = useRef(null)
+  const activeSection = useScrollSpy(SECTION_IDS)
+
+  // Déplace le focus vers le bouton fermer à l'ouverture du drawer
+  useEffect(() => {
+    if (mobileOpen) {
+      drawerCloseRef.current?.focus()
+    }
+  }, [mobileOpen])
 
   // Fermeture via Esc
   useEffect(() => {
@@ -126,7 +147,12 @@ export default function Navbar() {
           <ul className="hidden md:flex items-center gap-6">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
-                <NavItem href={item.href} label={item.label} />
+                <NavItem
+                  href={item.href}
+                  label={item.label}
+                  sectionId={item.sectionId}
+                  activeSection={activeSection}
+                />
               </li>
             ))}
           </ul>
@@ -171,7 +197,7 @@ export default function Navbar() {
         {mobileOpen && (
           <>
             {/* Backdrop */}
-            <motion.div
+            <m.div
               {...backdropProps}
               className="fixed inset-0 z-40 bg-neutral-900/40 backdrop-blur-sm md:hidden"
               onClick={closeMenu}
@@ -179,7 +205,7 @@ export default function Navbar() {
             />
 
             {/* Drawer */}
-            <motion.div
+            <m.div
               id="mobile-menu"
               role="dialog"
               aria-modal="true"
@@ -193,6 +219,7 @@ export default function Navbar() {
                   LM<span className="text-brand-500">.</span>
                 </span>
                 <button
+                  ref={drawerCloseRef}
                   type="button"
                   onClick={closeMenu}
                   className={cn(
@@ -237,7 +264,7 @@ export default function Navbar() {
                   Me contacter
                 </a>
               </div>
-            </motion.div>
+            </m.div>
           </>
         )}
       </AnimatePresence>

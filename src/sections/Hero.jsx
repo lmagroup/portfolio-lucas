@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import HeroIllustration from '../assets/HeroIllustration'
@@ -35,8 +35,6 @@ const illustrationVariants = {
 export default function Hero() {
   const prefersReduced = useReducedMotion()
 
-  const animate = prefersReduced ? 'visible' : undefined
-
   return (
     <section
       id="accueil"
@@ -67,33 +65,33 @@ export default function Hero() {
       <div className="container-main relative z-10 py-20 lg:py-28">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Colonne texte */}
-          <motion.div
+          <m.div
             variants={containerVariants}
-            initial="hidden"
-            animate={animate ?? 'visible'}
+            initial={prefersReduced ? 'visible' : 'hidden'}
+            animate="visible"
             className="order-2 lg:order-1"
           >
             {/* Eyebrow */}
-            <motion.div variants={itemVariants} className="mb-5">
+            <m.div variants={itemVariants} className="mb-5">
               <Badge variant="brand" className="text-sm px-3 py-1">
                 Disponible pour de nouvelles opportunités
               </Badge>
-            </motion.div>
+            </m.div>
 
             {/* H1 */}
-            <motion.h1
+            <m.h1
               variants={itemVariants}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 leading-[1.05] tracking-tight mb-6"
             >
               Lucas Marie-Anne
-              <span className="block mt-2 text-brand-500">— Développeur</span>
+              <span className="block mt-2 text-brand-500">Développeur</span>
               <span className="block text-neutral-700 text-3xl sm:text-4xl lg:text-5xl mt-1 font-semibold">
                 Front-End
               </span>
-            </motion.h1>
+            </m.h1>
 
             {/* Accroche */}
-            <motion.p
+            <m.p
               variants={itemVariants}
               className="text-lg text-neutral-500 leading-relaxed mb-8 max-w-lg"
             >
@@ -102,10 +100,10 @@ export default function Hero() {
               <strong className="text-neutral-700 font-semibold">performantes</strong> et{' '}
               <strong className="text-neutral-700 font-semibold">accessibles</strong> — du prototype
               au déploiement.
-            </motion.p>
+            </m.p>
 
             {/* CTAs */}
-            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3 mb-10">
+            <m.div variants={itemVariants} className="flex flex-wrap items-center gap-3 mb-10">
               <a
                 href="/#projets"
                 className="inline-flex items-center gap-2 h-12 px-6 rounded-lg bg-brand-500 text-white font-semibold text-base hover:bg-brand-600 transition-all duration-200 shadow-soft hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
@@ -119,15 +117,15 @@ export default function Hero() {
               >
                 Me contacter
               </a>
-            </motion.div>
+            </m.div>
 
             {/* Stats / preuves sociales */}
-            <motion.div
+            <m.div
               variants={itemVariants}
               className="flex flex-wrap gap-6 pt-8 border-t border-neutral-100"
             >
               {[
-                { value: '2+', label: "ans d'expérience" },
+                { value: '3+', label: "ans d'expérience" },
                 { value: '100', label: 'score Lighthouse' },
                 { value: 'WCAG AA', label: 'accessibilité' },
               ].map(({ value, label }) => (
@@ -136,14 +134,14 @@ export default function Hero() {
                   <p className="text-sm text-neutral-500 mt-0.5">{label}</p>
                 </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
           {/* Colonne illustration */}
-          <motion.div
+          <m.div
             variants={illustrationVariants}
-            initial="hidden"
-            animate={animate ?? 'visible'}
+            initial={prefersReduced ? 'visible' : 'hidden'}
+            animate="visible"
             className="order-1 lg:order-2 flex justify-center"
           >
             <div className="relative w-full max-w-sm lg:max-w-md">
@@ -154,7 +152,7 @@ export default function Hero() {
               />
               <HeroIllustration className="relative w-full h-auto drop-shadow-xl" />
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>
