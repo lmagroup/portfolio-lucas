@@ -28,14 +28,14 @@ const CONTACT_ITEMS = [
   {
     Icon: GithubIcon,
     label: 'GitHub',
-    value: 'github.com/lucas',
-    href: 'https://github.com',
+    value: 'github.com/lucasmarieanne',
+    href: 'https://github.com/lucasmarieanne',
   },
   {
     Icon: LinkedinIcon,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/lucas',
-    href: 'https://linkedin.com',
+    value: 'linkedin.com/in/lucas-marie-anne',
+    href: 'https://www.linkedin.com/in/lucas-marie-anne/',
   },
 ]
 

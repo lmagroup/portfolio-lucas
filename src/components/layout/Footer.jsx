@@ -28,12 +28,12 @@ const NAV_SECTIONS = [
 const SOCIAL_LINKS = [
   {
     label: 'GitHub',
-    href: 'https://github.com',
+    href: 'https://github.com/lucasmarieanne',
     Icon: GithubIcon,
   },
   {
     label: 'LinkedIn',
-    href: 'https://linkedin.com',
+    href: 'https://www.linkedin.com/in/lucas-marie-anne/',
     Icon: LinkedinIcon,
   },
 ]

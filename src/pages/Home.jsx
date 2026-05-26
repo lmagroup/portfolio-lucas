@@ -23,7 +23,7 @@ const personJsonLd = {
     addressLocality: 'Paris',
     addressCountry: 'FR',
   },
-  sameAs: ['https://github.com', 'https://linkedin.com'],
+  sameAs: ['https://github.com/lucasmarieanne', 'https://www.linkedin.com/in/lucas-marie-anne/'],
   knowsAbout: ['React', 'TypeScript', 'TailwindCSS', 'Accessibilité web', 'JavaScript', 'Node.js'],
 }
 
