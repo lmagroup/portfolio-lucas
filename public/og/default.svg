@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+  <!-- Fond dégradé radial subtil -->
+  <radialGradient id="bg" cx="30%" cy="40%" r="70%">
+    <stop offset="0%" stop-color="#F1FAF5"/>
+    <stop offset="100%" stop-color="#FFFFFF"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Accent vert en haut à gauche -->
+  <rect x="0" y="0" width="6" height="630" fill="#2E9461"/>
+  <!-- Nom -->
+  <text x="80" y="240" font-family="system-ui, sans-serif" font-weight="700" font-size="72" fill="#18181B">Lucas Marie-Anne</text>
+  <!-- Titre -->
+  <text x="80" y="320" font-family="system-ui, sans-serif" font-weight="400" font-size="36" fill="#2E9461">Développeur Front-End React</text>
+  <!-- Tagline -->
+  <text x="80" y="390" font-family="system-ui, sans-serif" font-weight="400" font-size="28" fill="#71717A">Interfaces premium · Performantes · Accessibles</text>
+  <!-- URL -->
+  <text x="80" y="560" font-family="system-ui, sans-serif" font-weight="500" font-size="22" fill="#A1A1AA">lucasmarieanne.com</text>
+</svg>

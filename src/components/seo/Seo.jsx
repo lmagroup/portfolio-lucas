@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet-async'
 
 const SITE_NAME = 'Lucas Marie-Anne'
-const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://www.lucasmarieanne.dev'
-const DEFAULT_IMAGE = `${SITE_URL}/og/default.jpg`
+const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://www.lucasmarieanne.com'
+const DEFAULT_IMAGE = `${SITE_URL}/og/default.svg`
 
 export default function Seo({
   title,
